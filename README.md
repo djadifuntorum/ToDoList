@@ -10,5 +10,6 @@ A Task is a simple object comprising a Task name, Project name, Due date and Sta
 * Edit - updates Task fields and removes tasks.
 * Save - saves tasks to file.
 
+## Class Diagram
 
-
+![To-Do List Class Diagram](https://github.com/djadifuntorum/ToDoList/blob/master/Documents/ToDoList_ClassDiagram.png "To-Do List Class Diagram")
