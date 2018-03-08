@@ -4,14 +4,12 @@
  */
 package se.kth.sda3.todolist.controller;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
-import se.kth.sda3.todolist.model.Status;
 import se.kth.sda3.todolist.model.Task;
-import se.kth.sda3.todolist.view.AddTask;
+import se.kth.sda3.todolist.view.AddTaskView;
+import se.kth.sda3.todolist.view.HomePageView;
+import se.kth.sda3.todolist.view.ShowTaskView;
 
 /**
  *
@@ -20,31 +18,37 @@ import se.kth.sda3.todolist.view.AddTask;
 public class ToDoListController {
 
     private ArrayList<Task> tasks;
-    private AddTask addTask;
+    private AddTaskView addTask;
+    private HomePageView homePage;
+    private ShowTaskView showTask;
 
     public ToDoListController() {
 
         tasks = new ArrayList<>();
-        addTask = new AddTask();
-        addTask.showDisplay(tasks);
-        try {
-            String inputDate = "07/03/2018";
-            DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-            tasks.add(new Task("Read chapter 1", "JavaLecture", dateFormat.parse(inputDate) ,Status.WORKING));
-        } catch (ParseException e){
-            System.out.println(e.getMessage());
-        }
-
-
-        System.out.println(tasks.get(0).getName());
-        System.out.println(tasks.get(0).getProject());
-        System.out.println(tasks.get(0).getDueDate());
-        System.out.println(tasks.get(0).getStatus());
-
+        homePage = new HomePageView();
+        addTask = new AddTaskView();
+        showTask = new ShowTaskView();
     }
 
-
-
-
-
+    public void showView(){
+        boolean flag = true;
+        do{
+            int retVal = 0;
+            retVal = homePage.homePage();
+            System.out.println("RETVAL:ToDoListController.showView" + retVal);
+            switch(retVal){
+                case 1:     showTask.showDisplay(tasks);
+                            flag = true;
+                            break;
+                case 2:     addTask.showDisplay(tasks);
+                            flag = true;
+                            break;
+                case 3:     System.out.println("Edit Show Task");
+                            flag = true;
+                            break;
+                default:    flag = false;
+                            break;
+            }
+        } while(flag);
+    }
 }

@@ -19,16 +19,14 @@ import se.kth.sda3.todolist.model.Task;
  *
  * @author Debby Jane Azarcon <dja.difuntorum@gmail.com>
  */
-public class AddTask implements ToDoListView {
+public class AddTaskView implements ToDoListView {
 
-    public AddTask() {
+    public AddTaskView() {
     }
 
     @Override
     public void showDisplay(ArrayList<Task> tasks) {
-
         Task newTask = new Task();
-
         try {
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
             System.out.print("Enter Task: ");
@@ -62,13 +60,18 @@ public class AddTask implements ToDoListView {
         } catch (ParseException|IOException e){
             System.out.println(e.getMessage());
         }
+
+        showMenu();
     }
 
     @Override
     public void showMenu() {
 
+        System.out.println("1. Save");
+        System.out.println("2. Cancel");
+        System.out.println();
+        System.out.println();
+
+
     }
-
-
-
 }
