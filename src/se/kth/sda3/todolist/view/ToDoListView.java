@@ -14,5 +14,6 @@ import se.kth.sda3.todolist.model.Task;
 public interface ToDoListView {
 
     public void showDisplay(ArrayList<Task> tasks);
-    public void showMenu();
+    public Task showDisplay();
+    public int showMenu();
 }

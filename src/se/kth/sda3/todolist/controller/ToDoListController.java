@@ -28,25 +28,38 @@ public class ToDoListController {
         homePage = new HomePageView();
         addTask = new AddTaskView();
         showTask = new ShowTaskView();
+//        Sample data for testing
+//        tasks.add(new Task("read", "JAVA", new Date(119, 01, 01), Status.NEW));
+//        tasks.add(new Task("read", "JAVA", new Date(119, 02, 01), Status.NEW));
+//        tasks.add(new Task("read", "JAVA", new Date(118, 03, 01), Status.NEW));
+//        tasks.add(new Task("read", "JAVA", new Date(118, 04, 01), Status.NEW));
+//        tasks.add(new Task("read", "C", new Date(119, 02, 01), Status.NEW));
+//        tasks.add(new Task("read", "D", new Date(118, 02, 01), Status.NEW));
+
     }
 
     public void showView(){
+
+        Task newTask;
+
         boolean flag = true;
         do{
             int retVal = 0;
-            retVal = homePage.homePage();
-            System.out.println("RETVAL:ToDoListController.showView" + retVal);
+            homePage.showDisplay(tasks);
+            retVal = homePage.showMenu();
             switch(retVal){
-                case 1:     showTask.showDisplay(tasks);
-                            flag = true;
+                case 1:     showTask.showDisplay();
+                            showTask.showMenu();
+                            showTask.showDisplay(tasks);
                             break;
-                case 2:     addTask.showDisplay(tasks);
-                            flag = true;
+                case 2:     newTask = addTask.showDisplay();
+                            if (addTask.showMenu() == 1){
+                                tasks.add(newTask);
+                            }
                             break;
                 case 3:     System.out.println("Edit Show Task");
-                            flag = true;
                             break;
-                default:    flag = false;
+                case 4:     flag = false;
                             break;
             }
         } while(flag);
