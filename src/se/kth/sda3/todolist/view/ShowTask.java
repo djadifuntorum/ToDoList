@@ -11,24 +11,21 @@ import se.kth.sda3.todolist.model.Task;
  *
  * @author Debby Jane Azarcon <dja.difuntorum@gmail.com>
  */
-public class ShowTaskView implements ToDoListView {
+public class ShowTask implements ToDoList {
 
     public int sortValue = 1;
-
-    public ShowTaskView() {
-    }
 
     @Override
     public void showDisplay(ArrayList<Task> tasks) {
         if (sortValue == 1){ //duedate
             System.out.println("DUE DATE\t\t\tTASK\tPROJECT\tSTATUS");
-            tasks.sort((a,b) -> a.getDueDate().compareTo(b.getDueDate()));
-            tasks.stream().forEach(t -> System.out.format("%s\t%s\t%s\t%s\n",
+            tasks.stream().sorted((a,b) -> a.getDueDate().compareTo(b.getDueDate()))
+                    .forEach(t -> System.out.format("%s\t%s\t%s\t%s\n",
                     t.getDueDate(), t.getName(), t.getProject(), t.getStatus()));
         } else { //project
             System.out.println("PROJECT\tTASK\tDUE DATE\t\t\tSTATUS");
-            tasks.sort((a,b) -> a.getProject().compareTo(b.getProject()));
-            tasks.stream().forEach(t -> System.out.format("%s\t%s\t%s\t%s\n",
+            tasks.stream().sorted((a,b) -> a.getProject().compareTo(b.getProject()))
+                    .forEach(t -> System.out.format("%s\t%s\t%s\t%s\n",
                     t.getProject(), t.getName(), t.getDueDate(), t.getStatus()));
         }
     }

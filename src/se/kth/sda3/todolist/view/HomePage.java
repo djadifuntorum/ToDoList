@@ -11,10 +11,8 @@ import se.kth.sda3.todolist.model.Task;
  *
  * @author Debby Jane Azarcon <dja.difuntorum@gmail.com>
  */
-public class HomePageView implements ToDoListView {
+public class HomePage implements ToDoList {
 
-    public HomePageView() {
-    }
 
     @Override
     public void showDisplay(ArrayList<Task> tasks) {

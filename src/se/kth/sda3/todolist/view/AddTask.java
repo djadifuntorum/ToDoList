@@ -6,17 +6,13 @@ package se.kth.sda3.todolist.view;
 
 
 import java.util.ArrayList;
-import se.kth.sda3.todolist.model.Status;
 import se.kth.sda3.todolist.model.Task;
 
 /**
  *
  * @author Debby Jane Azarcon <dja.difuntorum@gmail.com>
  */
-public class AddTaskView implements ToDoListView {
-
-    public AddTaskView() {
-    }
+public class AddTask implements ToDoList {
 
     @Override
     public void showDisplay(ArrayList<Task> tasks) {
@@ -32,25 +28,8 @@ public class AddTaskView implements ToDoListView {
         newTask.setProject(ViewHelper.getInput());
         System.out.print("Enter Due date <ddmmyyyy>: ");
         newTask.setDueDate(ViewHelper.getDateInput());
-        boolean flag = true;
-        do{
-            System.out.print("Enter Status: ");
-            String status = ViewHelper.getInput();
-            switch(status.toUpperCase()){
-                case "NEW": newTask.setStatus(Status.NEW);
-                            flag = false;
-                            break;
-                case "WORKING": newTask.setStatus(Status.WORKING);
-                                flag = false;
-                                break;
-                case "DONE":    newTask.setStatus(Status.DONE);
-                                flag = false;
-                                break;
-                default:
-                    System.out.println("Please enter either NEW, WORKING or DONE.");
-
-            }
-        } while(flag);
+        System.out.print("Enter Status: ");
+        newTask.setStatus(ViewHelper.getStatusInput());
         return newTask;
     }
 

@@ -11,6 +11,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import se.kth.sda3.todolist.model.Status;
 
 /**
  *
@@ -55,5 +56,30 @@ public class ViewHelper {
             System.out.println("Invalid input2 " + e.getMessage());
             return -1;
         }
+    }
+
+    public static Status getStatusInput(){
+        Status status = Status.NEW;
+        boolean flag = true;
+        do{
+            String inputStatus = ViewHelper.getInput();
+            switch(inputStatus.toUpperCase()){
+                case "NEW":
+                    status = Status.NEW;
+                    flag = false;
+                    break;
+                case "WORKING":
+                    status = Status.WORKING;
+                    flag = false;
+                    break;
+                case "DONE":
+                    status = Status.DONE;
+                    flag = false;
+                    break;
+                default:
+                    System.out.println("Please enter either NEW, WORKING or DONE.");
+            }
+        } while(flag);
+        return status;
     }
 }
