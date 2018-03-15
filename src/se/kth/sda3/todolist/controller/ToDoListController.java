@@ -5,8 +5,8 @@
 package se.kth.sda3.todolist.controller;
 
 import java.util.ArrayList;
-import se.kth.sda3.todolist.filehandler.FileReader;
-import se.kth.sda3.todolist.filehandler.FileWriter;
+import se.kth.sda3.todolist.filehandler.TaskReader;
+import se.kth.sda3.todolist.filehandler.TaskWriter;
 
 import se.kth.sda3.todolist.model.Task;
 
@@ -22,11 +22,11 @@ public class ToDoListController {
         tasks = new ArrayList<>();
     }
 
-    public void loadFile(FileReader reader){
+    public void loadFile(TaskReader reader){
         tasks.addAll(reader.readFile());
     }
 
-    public void writeFile(FileWriter writer){
+    public void writeFile(TaskWriter writer){
         writer.writeFile(tasks);
     }
 

@@ -11,6 +11,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 import se.kth.sda3.todolist.model.Status;
 
 /**
@@ -82,4 +83,37 @@ public class ViewHelper {
         } while(flag);
         return status;
     }
+
+    public static Status setStatus(String inputStatus){
+        Status status = Status.NEW;
+
+        if(inputStatus.equals("NEW")){
+            status = Status.NEW;
+        } else if (inputStatus.equals("WORKING")){
+            status = Status.WORKING;
+        } else if (inputStatus.equals("DONE")){
+            status = Status.DONE;
+        } else {}
+        return status;
+    }
+
+    public static String parseDateToString(Date dateFormat){
+        DateFormat df = new SimpleDateFormat("ddMMyyyy");
+        Date date = dateFormat;
+        String stringDate = df.format(date);
+
+        return stringDate;
+    }
+
+    public static Date parseStringToDate(String stringDate){
+        Date date = new Date();
+        try{
+            DateFormat format = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy", Locale.ENGLISH);
+            date = format.parse(stringDate);
+        }catch (ParseException e){
+            System.out.println("Error " + e.getMessage());
+        }
+        return date;
+    }
+
 }
