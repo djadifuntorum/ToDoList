@@ -17,21 +17,24 @@ import se.kth.sda3.todolist.model.Task;
 public class TaskWriter {
 
     private String filename = "";
-    PrintWriter outputStream = null;
 
-    public TaskWriter(String filename){
+    public TaskWriter(String filename) {
         this.filename = filename;
     }
 
-    public void writeFile(ArrayList<Task> tasks){
+    public void writeFile(ArrayList<Task> tasks) {
+
+        PrintWriter outputStream = null;
         try {
             outputStream = new PrintWriter(new FileWriter(filename));
 
-            for(Task task:tasks){
-                outputStream.format("%s,%s,%s,%s\n", task.getName(), task.getProject(), task.getDueDate(), task.getStatus());
+            for (Task task:tasks) {
+                outputStream.format("%s,%s,%s,%s\n",
+                                    task.getName(), task.getProject(),
+                                    task.getDueDate(), task.getStatus());
             }
 
-        } catch(IOException e){
+        } catch(IOException e) {
             System.out.println("Message: " + e.getMessage());
         } finally {
             if (outputStream != null) {

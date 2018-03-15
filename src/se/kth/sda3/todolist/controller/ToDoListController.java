@@ -22,30 +22,31 @@ public class ToDoListController {
         tasks = new ArrayList<>();
     }
 
-    public void loadFile(TaskReader reader){
+    public void loadFile(TaskReader reader) {
         tasks.addAll(reader.readFile());
     }
 
-    public void writeFile(TaskWriter writer){
+    public void writeFile(TaskWriter writer) {
         writer.writeFile(tasks);
     }
 
-    public ArrayList<Task> getTasks(){
+    public ArrayList<Task> getTasks() {
         return tasks;
     }
 
-    public void addTask(Task task){
+    public void addTask(Task task) {
         tasks.add(task);
     }
 
-    public int getTaskSize(){
+    public int getTaskSize() {
         return tasks.size();
     }
-    public Task getTaskByIndex (int index){
+
+    public Task getTaskByIndex (int index) {
         return tasks.get(index);
     }
 
-    public void updateTask(Task task, int taskIndex){
+    public void updateTask(Task task, int taskIndex) {
         tasks.set(taskIndex, task);
     }
 

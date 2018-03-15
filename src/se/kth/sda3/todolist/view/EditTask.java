@@ -19,32 +19,44 @@ public class EditTask implements ToDoList{
     @Override
     public void showDisplay(ArrayList<Task> tasks) {
         task = tasks.get(0);
-        System.out.println("#####   Edit a task: ######");
+        System.out.println();
+        System.out.println("######################################");
+        System.out.println("###          MY TO-DO LIST         ###");
+        System.out.println("###           Edit Task.           ###");
+        System.out.println("######################################");
+        System.out.println();
+        System.out.println();
         System.out.format("Task name: %s\n", task.getName());
         System.out.format("Project: %s\n", task.getProject());
         System.out.format("Due date: %s\n", task.getDueDate());
         System.out.format("Status: %s\n", task.getStatus());
+        System.out.println();
     }
 
     @Override
     public Task showDisplay() {
+        System.out.println();
         switch(fieldToEdit){
-            case 1: System.out.format("Current Task name: %s\n", task.getName());
-                    System.out.print("New Task name: ");
-                    task.setName(ViewHelper.getInput());
-                    break;
-            case 2: System.out.format("Current Project: %s\n", task.getProject());
-                    System.out.print("New Project: ");
-                    task.setProject(ViewHelper.getInput());
-                    break;
-            case 3: System.out.format("Current Due date: %s\n", task.getDueDate());
-                    System.out.print("New Due date: ");
-                    task.setDueDate(ViewHelper.getDateInput());
-                    break;
-            case 4: System.out.format("Current Status: %s\n", task.getStatus());
-                    System.out.print("New Status: ");
-                    task.setStatus(ViewHelper.getStatusInput());
-                    break;
+            case 1:
+                System.out.format("Current Task name: %s\n", task.getName());
+                System.out.print("New Task name: ");
+                task.setName(ViewHelper.getInput());
+                break;
+            case 2:
+                System.out.format("Current Project: %s\n", task.getProject());
+                System.out.print("New Project: ");
+                task.setProject(ViewHelper.getInput());
+                break;
+            case 3:
+                System.out.format("Current Due date: %s\n", task.getDueDate());
+                System.out.print("New Due date: ");
+                task.setDueDate(ViewHelper.getDateInput());
+                break;
+            case 4:
+                System.out.format("Current Status: %s\n", task.getStatus());
+                System.out.print("New Status: ");
+                task.setStatus(ViewHelper.getStatusInput());
+                break;
         }
         return task;
     }
@@ -54,6 +66,7 @@ public class EditTask implements ToDoList{
         int retVal = 0;
         boolean flag = true;
         do{
+            System.out.println();
             System.out.println("1. Update Task name");
             System.out.println("2. Update Project");
             System.out.println("3. Update Due date");

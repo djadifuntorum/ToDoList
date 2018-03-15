@@ -22,6 +22,11 @@ public class AddTask implements ToDoList {
     @Override
     public Task showDisplay() {
         Task newTask = new Task();
+        System.out.println("#####################################");
+        System.out.println("#####       MY TO-DO LIST       #####");
+        System.out.println("#####          Add Task.        #####");
+        System.out.println("#####################################");
+        System.out.println();
         System.out.print("Enter Task: ");
         newTask.setName(ViewHelper.getInput());
         System.out.print("Enter Project: ");
@@ -38,6 +43,7 @@ public class AddTask implements ToDoList {
         int retVal = 0;
         boolean flag = true;
         do{
+            System.out.println();
             System.out.println("1. Add");
             System.out.println("2. Cancel");
             System.out.println();
@@ -57,6 +63,4 @@ public class AddTask implements ToDoList {
         } while(flag);
         return retVal;
     }
-
-
 }

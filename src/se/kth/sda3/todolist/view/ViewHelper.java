@@ -20,8 +20,7 @@ import se.kth.sda3.todolist.model.Status;
  */
 public class ViewHelper {
 
-    public static String getInput(){
-
+    public static String getInput() {
         String inputValue = "";
 
         try {
@@ -34,8 +33,7 @@ public class ViewHelper {
         }
     }
 
-    public static Date getDateInput(){
-
+    public static Date getDateInput() {
         Date date = new Date();
 
         try {
@@ -49,21 +47,20 @@ public class ViewHelper {
 
     }
 
-    public static int getIntegerInput(){
-
+    public static int getIntegerInput() {
         try {
             return Integer.parseInt(getInput());
-        } catch(NumberFormatException e){
+        } catch(NumberFormatException e) {
             System.out.println("Invalid input2 " + e.getMessage());
             return -1;
         }
     }
 
-    public static Status getStatusInput(){
+    public static Status getStatusInput() {
         Status status = Status.NEW;
         boolean flag = true;
-        do{
-            String inputStatus = ViewHelper.getInput();
+        do {
+            String inputStatus = getInput();
             switch(inputStatus.toUpperCase()){
                 case "NEW":
                     status = Status.NEW;
@@ -84,7 +81,7 @@ public class ViewHelper {
         return status;
     }
 
-    public static Status setStatus(String inputStatus){
+    public static Status parseStringToStatus(String inputStatus){
         Status status = Status.NEW;
 
         if(inputStatus.equals("NEW")){

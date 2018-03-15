@@ -23,6 +23,7 @@ public class Main {
         TaskWriter writer = new TaskWriter("Tasks.csv");
         ToDoListController toDoListCtrl = new ToDoListController();
         ViewController mainView = new ViewController(toDoListCtrl);
+
         toDoListCtrl.loadFile(reader);
         mainView.showView();
         toDoListCtrl.writeFile(writer);

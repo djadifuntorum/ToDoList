@@ -18,21 +18,27 @@ public class SelectTask implements ToDoList{
     public void showDisplay(ArrayList<Task> tasks) {
 
         if (tasks.size() != 0){
+            System.out.println();
             System.out.println("######################################");
             System.out.println("###          MY TO-DO LIST         ###");
             System.out.println("###  Please select a task to edit. ###");
             System.out.println("######################################");
             System.out.println();
             System.out.println();
-            System.out.println("PROJECT\tTASK\tDUE DATE\t\t\tSTATUS");
+            System.out.println("PROJECT\tTASK\tDUE DATE\tSTATUS");
             index = 1;
-            tasks.stream().forEach(t -> System.out.format("%d) %s\t%s\t%s\t%s\n", index++,
-                        t.getProject(), t.getName(), t.getDueDate(), t.getStatus()));
+            tasks.stream()
+                .forEach(t -> System.out.format("%d) %s\t%s\t%s\t%s\n",
+                        index++, t.getProject(), t.getName(),
+                        ViewHelper.parseDateToString(t.getDueDate()), t.getStatus()));
         } else {
+            System.out.println();
             System.out.println("######################################");
             System.out.println("###          MY TO-DO LIST         ###");
             System.out.println("###   You have no tasks to edit.   ###");
             System.out.println("######################################");
+            System.out.println();
+            System.out.println();
         }
     }
 
@@ -43,14 +49,14 @@ public class SelectTask implements ToDoList{
 
     @Override
     public int showMenu() {
-
         int retVal = 0;
         boolean flag = true;
-        do{
-            System.out.println("Please choose a number: ");
+        do {
+            System.out.println();
+            System.out.print("Please choose a number: ");
 
             retVal = ViewHelper.getIntegerInput();
-            if(retVal > 0 && retVal <= index){
+            if (retVal > 0 && retVal <= index) {
                 flag = false;
             } else {
                 System.out.format("Please enter a number from 1 to %d. \n", index);

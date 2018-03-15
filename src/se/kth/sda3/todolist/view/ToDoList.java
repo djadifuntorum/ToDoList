@@ -12,7 +12,6 @@ import se.kth.sda3.todolist.model.Task;
  * @author Debby Jane Azarcon <dja.difuntorum@gmail.com>
  */
 public interface ToDoList {
-
     public void showDisplay(ArrayList<Task> tasks);
     public Task showDisplay();
     public int showMenu();

@@ -13,25 +13,33 @@ import se.kth.sda3.todolist.model.Task;
  */
 public class ShowTask implements ToDoList {
 
-    public int sortValue = 1;
+    private int sortValue = 1;
 
     @Override
     public void showDisplay(ArrayList<Task> tasks) {
-        if (sortValue == 1){ //duedate
-            System.out.println("DUE DATE\t\t\tTASK\tPROJECT\tSTATUS");
-            tasks.stream().sorted((a,b) -> a.getDueDate().compareTo(b.getDueDate()))
-                    .forEach(t -> System.out.format("%s\t%s\t%s\t%s\n",
-                    t.getDueDate(), t.getName(), t.getProject(), t.getStatus()));
+        System.out.println();
+        if (sortValue == 1){
+            System.out.println("DUE DATE\tTASK\tPROJECT\tSTATUS");
+            tasks.stream()
+                .sorted((a,b) -> a.getDueDate().compareTo(b.getDueDate()))
+                .forEach(t -> System.out.format("%s\t%s\t%s\t%s\n",
+                        ViewHelper.parseDateToString(t.getDueDate()),
+                        t.getName(), t.getProject(), t.getStatus()));
         } else { //project
-            System.out.println("PROJECT\tTASK\tDUE DATE\t\t\tSTATUS");
-            tasks.stream().sorted((a,b) -> a.getProject().compareTo(b.getProject()))
-                    .forEach(t -> System.out.format("%s\t%s\t%s\t%s\n",
-                    t.getProject(), t.getName(), t.getDueDate(), t.getStatus()));
+            System.out.println("PROJECT\tTASK\tDUE DATE\tSTATUS");
+            tasks.stream()
+                .sorted((a,b) -> a.getProject().compareTo(b.getProject()))
+                .forEach(t -> System.out.format("%s\t%s\t%s\t%s\n",
+                        t.getProject(), t.getName(),
+                        ViewHelper.parseDateToString(t.getDueDate()),
+                        t.getStatus()));
         }
+        System.out.println();
     }
 
     @Override
     public Task showDisplay() {
+        System.out.println();
         System.out.println("#####################################");
         System.out.println("#####       MY TO-DO LIST       #####");
         System.out.println("#####       Show tasks by:      #####");
@@ -52,15 +60,11 @@ public class ShowTask implements ToDoList {
             System.out.println();
             System.out.print("Please choose a number: ");
 
-            switch(ViewHelper.getIntegerInput()){
-                case 1: retVal = 1;
-                        flag = false;
-                        break;
-                case 2: retVal = 2;
-                        flag = false;
-                        break;
-                default:
-                        System.out.println("Please enter numbers from 1 or 2.");
+            retVal = ViewHelper.getIntegerInput();
+            if (retVal > 0 && retVal <= 2) {
+                flag = false;
+            } else {
+                System.out.println("Please select a number from 1 to 2.");
             }
         } while(flag);
         sortValue = retVal;
