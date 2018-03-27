@@ -4,7 +4,8 @@
  */
 package se.kth.sda3.todolist.view;
 
-import se.kth.sda3.todolist.controller.ToDoListController;
+import se.kth.sda3.todolist.controller.DataController;
+import se.kth.sda3.todolist.model.Task;
 import se.kth.sda3.todolist.view.views.HomePageView;
 
 /**
@@ -13,9 +14,9 @@ import se.kth.sda3.todolist.view.views.HomePageView;
  */
 public class ViewController {
 
-    private final ToDoListController toDoListCtrl;
+    private final DataController<Task> toDoListCtrl;
 
-    public ViewController(ToDoListController toDoListCtrl){
+    public ViewController(DataController<Task> toDoListCtrl){
         this.toDoListCtrl = toDoListCtrl;
     }
 
@@ -23,7 +24,7 @@ public class ViewController {
         Integer option;
         do{
             Screen homePageView = new HomePageView(toDoListCtrl);
-            homePageView.setLabel(String.format("  Currently have %d Tasks!  ", toDoListCtrl.getTaskSize()));
+            homePageView.setLabel(String.format("  Currently have %d Tasks!  ", toDoListCtrl.getDataSize()));
             homePageView.showScreen();
             option = homePageView.getSelectedMenuOption();
             if (option == 4) {

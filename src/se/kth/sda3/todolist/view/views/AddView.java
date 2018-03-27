@@ -4,7 +4,7 @@
  */
 package se.kth.sda3.todolist.view.views;
 
-import se.kth.sda3.todolist.controller.ToDoListController;
+import se.kth.sda3.todolist.controller.DataController;
 import se.kth.sda3.todolist.model.Task;
 import se.kth.sda3.todolist.view.ViewHelper;
 import se.kth.sda3.todolist.view.Menu;
@@ -19,9 +19,9 @@ public class AddView extends Screen{
     private static final int ADD = 1;
     private static final int CANCEL = 2;
     private final Task newTask;
-    private final ToDoListController toDoListCtrl;
+    private final DataController<Task> toDoListCtrl;
 
-    public AddView(ToDoListController toDoListCtrl) {
+    public AddView(DataController<Task> toDoListCtrl) {
         super(new Menu(), "          Add Task.        ");
         this.toDoListCtrl = toDoListCtrl;
         newTask = new Task();
@@ -46,7 +46,7 @@ public class AddView extends Screen{
     @Override
     public void processSelectedMenuOption(Integer option) {
         if (option == ADD){
-            toDoListCtrl.addTask(newTask); // should call controller where task is not a parameter. this code is for model.
+            toDoListCtrl.addData(newTask); // should call controller where task is not a parameter. this code is for model.
         }
     }
 

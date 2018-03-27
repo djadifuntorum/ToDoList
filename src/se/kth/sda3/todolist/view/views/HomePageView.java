@@ -6,7 +6,8 @@ package se.kth.sda3.todolist.view.views;
 
 import java.util.HashMap;
 import java.util.Map;
-import se.kth.sda3.todolist.controller.ToDoListController;
+import se.kth.sda3.todolist.controller.DataController;
+import se.kth.sda3.todolist.model.Task;
 import se.kth.sda3.todolist.view.Menu;
 import se.kth.sda3.todolist.view.Screen;
 
@@ -22,11 +23,11 @@ public class HomePageView extends Screen{
     private static final int SAVE = 4;
     private final Map<Integer, Screen> screens;
 
-    public HomePageView(ToDoListController toDoListCtrl) {
+    public HomePageView(DataController<Task> toDoListCtrl) {
         super(new Menu(), "");
         screens = new HashMap<>();
         menu.addOption(ADD, "Add Task");
-        if(toDoListCtrl.getTaskSize() > 0) {
+        if(toDoListCtrl.getDataSize() > 0) {
             menu.addOption(SHOW, "Show Task");
             menu.addOption(EDIT, "Edit Task");
         }

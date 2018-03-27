@@ -8,6 +8,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import se.kth.sda3.todolist.model.Task;
 import se.kth.sda3.todolist.view.ViewHelper;
 
@@ -23,8 +24,8 @@ public class TaskReader {
         this.filename = filename;
     }
 
-    public ArrayList<Task> readFile() {
-        ArrayList<Task> tasks = new ArrayList<>();
+    public List<Task> readFile() {
+        List<Task> tasks = new ArrayList<>();
         BufferedReader br = null;
         String line;
 

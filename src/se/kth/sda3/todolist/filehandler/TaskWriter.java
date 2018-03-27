@@ -7,14 +7,14 @@ package se.kth.sda3.todolist.filehandler;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
+import java.util.List;
 import se.kth.sda3.todolist.model.Task;
 
 /**
  *
  * @author Debby Jane Azarcon <dja.difuntorum@gmail.com>
  */
-public class TaskWriter {
+public class TaskWriter<T> {
 
     private String filename = "";
 
@@ -22,13 +22,13 @@ public class TaskWriter {
         this.filename = filename;
     }
 
-    public void writeFile(ArrayList<Task> tasks) {
+    public void writeFile(List<T> tasks) {
 
         PrintWriter outputStream = null;
         try {
             outputStream = new PrintWriter(new FileWriter(filename));
 
-            for (Task task:tasks) {
+            for (Task task:(List<Task>)tasks) {
                 outputStream.format("%s,%s,%s,%s\n",
                                     task.getName(), task.getProject(),
                                     task.getDueDate(), task.getStatus());
