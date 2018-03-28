@@ -12,29 +12,33 @@ import se.kth.sda3.todolist.view.Menu;
 import se.kth.sda3.todolist.view.Screen;
 
 /**
- *
- * @author Debby Jane Azarcon <dja.difuntorum@gmail.com>
+ * The view for the applications home page.
  */
 public class HomePageView extends Screen{
 
     private static final int ADD = 1;
     private static final int SHOW = 2;
     private static final int EDIT = 3;
-    private static final int SAVE = 4;
+    public static final int SAVE = 4;
     private final Map<Integer, Screen> screens;
 
-    public HomePageView(DataController<Task> toDoListCtrl) {
+    /**
+     * Creates an instance of the HomePageView.
+     *
+     * @param taskDataCtrl Contains access to the <code>Task</code> data that the view will use.
+     */
+    public HomePageView(DataController<Task> taskDataCtrl) {
         super(new Menu(), "");
         screens = new HashMap<>();
         menu.addOption(ADD, "Add Task");
-        if(toDoListCtrl.getDataSize() > 0) {
+        if(taskDataCtrl.getDataSize() > 0) {
             menu.addOption(SHOW, "Show Task");
             menu.addOption(EDIT, "Edit Task");
         }
         menu.addOption(SAVE, "Save and Exit");
-        screens.put(ADD, new AddView(toDoListCtrl));
-        screens.put(SHOW, new ShowView(toDoListCtrl));
-        screens.put(EDIT, new SelectTaskToEditView(toDoListCtrl));
+        screens.put(ADD, new AddView(taskDataCtrl));
+        screens.put(SHOW, new ShowView(taskDataCtrl));
+        screens.put(EDIT, new SelectTaskToEditView(taskDataCtrl));
     }
 
     @Override

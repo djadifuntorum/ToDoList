@@ -12,8 +12,7 @@ import se.kth.sda3.todolist.view.Screen;
 import se.kth.sda3.todolist.view.ViewHelper;
 
 /**
- *
- * @author Debby Jane Azarcon <dja.difuntorum@gmail.com>
+ * The view for editing a task.
  */
 public class EditView extends Screen{
 
@@ -23,24 +22,30 @@ public class EditView extends Screen{
     private static final int STATUS = 4;
     private static final int REMOVE = 5;
     private static final int CANCEL = 6;
-    private final DataController<Task> toDoListCtrl;
+    private final DataController<Task> taskDataCtrl;
     private final Integer index;
 
-    public EditView(DataController<Task> toDoListCtrl, Integer option) {
+    /**
+     * Creates an instance of the EditView.
+     *
+     * @param taskDataCtrl Contains access to the <code>Task</code> data that the view will use.
+     * @param index The index of the data to be edited.
+     */
+    public EditView(DataController<Task> taskDataCtrl, Integer index) {
         super(new Menu(), "         Edit Task.        ");
-        this.toDoListCtrl = toDoListCtrl;
+        this.taskDataCtrl = taskDataCtrl;
+        this.index = index;
         menu.addOption(TASK_NAME, "Update Task name");
         menu.addOption(PROJECT, "Update Project");
         menu.addOption(DUE_DATE, "Update Due Date");
         menu.addOption(STATUS, "Update Status");
         menu.addOption(REMOVE, "Remove");
         menu.addOption(CANCEL, "Go back to Home Page");
-        index = option;
     }
 
     @Override
     protected void content() {
-        List<Task> tasks = toDoListCtrl.getData();
+        List<Task> tasks = taskDataCtrl.getData();
         System.out.println();
         System.out.format("Task name: %s\n", tasks.get(index).getName());
         System.out.format("Project: %s\n", tasks.get(index).getProject());
@@ -51,7 +56,7 @@ public class EditView extends Screen{
 
     @Override
     public void processSelectedMenuOption(Integer option) {
-        List<Task> tasks = toDoListCtrl.getData();
+        List<Task> tasks = taskDataCtrl.getData();
         System.out.println();
         switch(option){
             case TASK_NAME:

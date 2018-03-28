@@ -11,19 +11,23 @@ import se.kth.sda3.todolist.view.Menu;
 import se.kth.sda3.todolist.view.Screen;
 
 /**
- *
- * @author Debby Jane Azarcon <dja.difuntorum@gmail.com>
+ * The view for adding a task.
  */
 public class AddView extends Screen{
 
     private static final int ADD = 1;
     private static final int CANCEL = 2;
     private final Task newTask;
-    private final DataController<Task> toDoListCtrl;
+    private final DataController<Task> taskDataCtrl;
 
-    public AddView(DataController<Task> toDoListCtrl) {
+    /**
+     * Creates an instance of the AddView.
+     *
+     * @param taskDataCtrl Contains access to the <code>Task</code> data that the view will use.
+     */
+    public AddView(DataController<Task> taskDataCtrl) {
         super(new Menu(), "          Add Task.        ");
-        this.toDoListCtrl = toDoListCtrl;
+        this.taskDataCtrl = taskDataCtrl;
         newTask = new Task();
         menu.addOption(ADD, "Add");
         menu.addOption(CANCEL, "Cancel");
@@ -46,7 +50,7 @@ public class AddView extends Screen{
     @Override
     public void processSelectedMenuOption(Integer option) {
         if (option == ADD){
-            toDoListCtrl.addData(newTask); // should call controller where task is not a parameter. this code is for model.
+            taskDataCtrl.addData(newTask);
         }
     }
 

@@ -11,20 +11,24 @@ import se.kth.sda3.todolist.view.Menu;
 import se.kth.sda3.todolist.view.Screen;
 
 /**
- *
- * @author Debby Jane Azarcon <dja.difuntorum@gmail.com>
+ * The view for selecting a task.
  */
 public class SelectTaskToEditView extends Screen{
 
     private static final int REMOVE = 5;
     private static final int CANCEL = 6;
-    private final DataController<Task> toDoListCtrl;
+    private final DataController<Task> taskDataCtrl;
 
-    public SelectTaskToEditView(DataController<Task> toDoListCtrl) {
+    /**
+     * Creates an instance of the SelectTaskToEditView.
+     *
+     * @param taskDataCtrl Contains access to the <code>Task</code> data that the view will use.
+     */
+    public SelectTaskToEditView(DataController<Task> taskDataCtrl) {
         super(new Menu(), "         Edit Task.        ");
-        this.toDoListCtrl = toDoListCtrl;
+        this.taskDataCtrl = taskDataCtrl;
         Integer index = 1;
-        for (Task task : toDoListCtrl.getData()){
+        for (Task task : taskDataCtrl.getData()){
             menu.addOption(index++,
                 String.format("%s\t\t%s\t%s\t%s",
                     task.getProject(), task.getName(),
@@ -42,7 +46,7 @@ public class SelectTaskToEditView extends Screen{
     public void processSelectedMenuOption(Integer option) {
         Integer index = option - 1;
         boolean flag = true;
-        Screen editScreen = new EditView(toDoListCtrl, index);
+        Screen editScreen = new EditView(taskDataCtrl, index);
         do{
             editScreen.showScreen();
             option = editScreen.getSelectedMenuOption();
@@ -51,7 +55,7 @@ public class SelectTaskToEditView extends Screen{
                     flag = false;
                     break;
                 case REMOVE:
-                    toDoListCtrl.removeData(index);
+                    taskDataCtrl.removeData(index);
                     flag = false;
                     break;
                 default:

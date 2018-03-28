@@ -11,17 +11,24 @@ import java.util.List;
 import se.kth.sda3.todolist.model.Task;
 
 /**
- *
- * @author Debby Jane Azarcon <dja.difuntorum@gmail.com>
+ * The class responsible for saving data to a file.
  */
-public class TaskWriter<T> {
+public class Writer<T> {
 
-    private String filename = "";
+    private final String filename;
 
-    public TaskWriter(String filename) {
+    /**
+     * Creates a new instance.
+     *
+     * @param filename The filename of the file the data will be written to.
+     */
+    public Writer(String filename) {
         this.filename = filename;
     }
 
+    /**
+     * @param tasks The data collection that will be saved to file.
+     */
     public void writeFile(List<T> tasks) {
 
         PrintWriter outputStream = null;

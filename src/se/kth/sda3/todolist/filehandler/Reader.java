@@ -13,18 +13,25 @@ import se.kth.sda3.todolist.model.Task;
 import se.kth.sda3.todolist.view.ViewHelper;
 
 /**
- *
- * @author Debby Jane Azarcon <dja.difuntorum@gmail.com>
+ * The class responsible for reading data from a file.
  */
-public class TaskReader {
+public class Reader<T> {
 
-    private String filename;
+    private final String filename;
 
-    public TaskReader(String filename) {
+    /**
+     * Creates a new instance.
+     *
+     * @param filename The filename of the file to be read.
+     */
+    public Reader(String filename) {
         this.filename = filename;
     }
 
-    public List<Task> readFile() {
+    /**
+     * @return The data collection read from file.
+     */
+    public List<T> readFile() {
         List<Task> tasks = new ArrayList<>();
         BufferedReader br = null;
         String line;
@@ -52,6 +59,7 @@ public class TaskReader {
                 }
             }
         }
-        return tasks;
+
+        return (List<T>) tasks;
     }
 }

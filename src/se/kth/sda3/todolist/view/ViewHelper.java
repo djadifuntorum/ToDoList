@@ -15,11 +15,14 @@ import java.util.Locale;
 import se.kth.sda3.todolist.model.Status;
 
 /**
- *
- * @author Debby Jane Azarcon <dja.difuntorum@gmail.com>
+ * Helper for the View Controller.
+ * Contains utility methods that the views can use.
  */
 public class ViewHelper {
 
+    /**
+     * @return The inputted string value by the user.
+     */
     public static String getInput() {
         String inputValue = "";
 
@@ -33,6 +36,9 @@ public class ViewHelper {
         }
     }
 
+    /**
+     * @return The date inputted by the user.
+     */
     public static Date getDateInput() {
         Date date = new Date();
 
@@ -47,6 +53,9 @@ public class ViewHelper {
 
     }
 
+    /**
+     * @return The number inputted by the user.
+     */
     public static int getIntegerInput() {
         try {
             return Integer.parseInt(getInput());
@@ -56,6 +65,9 @@ public class ViewHelper {
         }
     }
 
+    /**
+     * @return The status inputted by the user.
+     */
     public static Status getStatusInput() {
         Status status = Status.NEW;
         boolean flag = true;
@@ -81,6 +93,12 @@ public class ViewHelper {
         return status;
     }
 
+    /**
+     * Converts the inputted string value by the user.
+     *
+     * @param inputStatus The value the user inputted.
+     * @return The Status equivalent to the inputted by the user.
+     */
     public static Status parseStringToStatus(String inputStatus){
         Status status = Status.NEW;
 
@@ -94,6 +112,12 @@ public class ViewHelper {
         return status;
     }
 
+    /**
+     * Converts the Date to string.
+     *
+     * @param dateFormat The Date format which the program recognizes.
+     * @return The string equivalent.
+     */
     public static String parseDateToString(Date dateFormat){
         DateFormat df = new SimpleDateFormat("ddMMyyyy");
         Date date = dateFormat;
@@ -102,6 +126,12 @@ public class ViewHelper {
         return stringDate;
     }
 
+    /**
+     * Converts the string to Date.
+     *
+     * @param stringDate The date to be converted to Date format.
+     * @return The Date format equivalent.
+     */
     public static Date parseStringToDate(String stringDate){
         Date date = new Date();
         try{

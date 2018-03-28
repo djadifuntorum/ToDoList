@@ -7,14 +7,19 @@ package se.kth.sda3.todolist.view;
 import java.util.Map;
 
 /**
- *
- * @author Debby Jane Azarcon <dja.difuntorum@gmail.com>
+ * Constructs the screen of the application.
  */
-public abstract class Screen{
+public abstract class Screen {
 
     protected Menu menu;
     private String label;
 
+    /**
+     * Creates an instance.
+     *
+     * @param menu The menu that the screen will have.
+     * @param label The label a particular screen will have.
+     */
     public Screen(Menu menu, String label) {
         this.menu = menu;
         this.label = label;
@@ -29,10 +34,16 @@ public abstract class Screen{
         System.out.println();
     }
 
+    /**
+     * @param label The description of the screen.
+     */
     public void setLabel(String label) {
         this.label = label;
     }
 
+    /**
+     * Additional information to show for each <code>Screen</code> implementation.
+     */
     protected abstract void content();
 
     private void menuOptions() {
@@ -41,6 +52,9 @@ public abstract class Screen{
         }
     }
 
+    /**
+     * @return The option selected by the user.
+     */
     public Integer getSelectedMenuOption() {
         Integer input = 0;
         do{
@@ -57,8 +71,16 @@ public abstract class Screen{
         return input;
     }
 
+    /**
+     * Performs the next step based on the given option.
+     *
+     * @param option The menu option the user selected.
+     */
     public abstract void processSelectedMenuOption(Integer option);
 
+    /**
+     * Displays the constructed screen.
+     */
     public void showScreen() {
         setLabel(label);
         banner();

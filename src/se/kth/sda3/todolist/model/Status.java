@@ -5,8 +5,7 @@
 package se.kth.sda3.todolist.model;
 
 /**
- *
- * @author Debby Jane Azarcon <dja.difuntorum@gmail.com>
+ * The status that can be assigned to a task.
  */
 public enum Status {
     NEW, WORKING, DONE;

@@ -6,50 +6,83 @@ package se.kth.sda3.todolist.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import se.kth.sda3.todolist.filehandler.TaskReader;
-import se.kth.sda3.todolist.filehandler.TaskWriter;
+import se.kth.sda3.todolist.filehandler.Reader;
+import se.kth.sda3.todolist.filehandler.Writer;
 
 /**
+ * The class to handle a collection of data.
  *
- * @author Debby Jane Azarcon <dja.difuntorum@gmail.com>
- * @param <T>
+ * @param <T> The data that the class will handle.
  */
 public class DataController<T> {
 
     private final List<T> data;
 
+    /**
+     * Creates a new instance.
+     */
     public DataController() {
         data = new ArrayList<>();
     }
 
-    public void loadFile(TaskReader reader) {
-        data.addAll((List<T>)reader.readFile());
+    /**
+     * Loads the data from the file reader.
+     *
+     * @param reader The data reader object.
+     */
+    public void loadFile(Reader<T> reader) {
+        data.addAll(reader.readFile());
     }
 
-    public void writeFile(TaskWriter writer) {
+    /**
+     * Writes the data to the file writer.
+     *
+     * @param writer The file writer object.
+     */
+    public void writeFile(Writer<T> writer) {
         writer.writeFile(data);
     }
 
+    /**
+     * @return The list of data.
+     */
     public List<T> getData() {
         return data;
     }
 
-    public void addData(T t) {
-        data.add(t);
+    /**
+     * @param data The data to be added.
+     */
+    public void addData(T data) {
+        this.data.add(data);
     }
 
+    /**
+     * @return The size of data in the collection.
+     */
     public int getDataSize() {
         return data.size();
     }
 
+    /**
+     * @param index The value used to get the data needed.
+     * @return The data that is contained from the given index value.
+     */
     public T getDataByIndex (int index) {
         return data.get(index);
     }
 
-    public void updateData(T t, int index) {
-        data.set(index, t);
+    /**
+     * @param data The data to be updated.
+     * @param index The value used to determine which data to be updated.
+     */
+    public void updateData(T data, int index) {
+        this.data.set(index, data);
     }
 
+    /**
+     * @param index The value used to determine which data to be removed.
+     */
     public void removeData(int index){
         data.remove(index);
     }

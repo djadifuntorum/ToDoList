@@ -5,28 +5,31 @@
 package se.kth.sda3.todolist.startup;
 
 import se.kth.sda3.todolist.controller.DataController;
-import se.kth.sda3.todolist.filehandler.TaskReader;
-import se.kth.sda3.todolist.filehandler.TaskWriter;
+import se.kth.sda3.todolist.filehandler.Reader;
+import se.kth.sda3.todolist.filehandler.Writer;
 import se.kth.sda3.todolist.model.Task;
-import se.kth.sda3.todolist.view.ViewController;
+import se.kth.sda3.todolist.view.ViewManager;
 
 /**
- *
- * @author Debby Jane Azarcon <dja.difuntorum@gmail.com>
+ * Contains the <code>main</code> method.
+ * Starts the application.
  */
 public class Main {
 
     /**
-     * @param args the command line arguments
+     * The applications main method.
+     *
+     * @param args The application does not have command line arguments.
      */
     public static void main(String[] args) {
-        TaskReader reader = new TaskReader("Tasks.csv");
-        TaskWriter<Task> writer = new TaskWriter("Tasks.csv");
-        DataController<Task> toDoListCtrl = new DataController<>();
-        ViewController view = new ViewController(toDoListCtrl);
-        toDoListCtrl.loadFile(reader);
+        Reader<Task> reader = new Reader("Tasks.csv");
+        Writer<Task> writer = new Writer("Tasks.csv");
+        DataController<Task> taskDataCtrl = new DataController<>();
+        ViewManager view = new ViewManager(taskDataCtrl);
+
+        taskDataCtrl.loadFile(reader);
         view.run();
-        toDoListCtrl.writeFile(writer);
+        taskDataCtrl.writeFile(writer);
     }
 
 }
