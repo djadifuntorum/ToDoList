@@ -4,7 +4,8 @@
  */
 package se.kth.sda3.todolist.view.views;
 
-import se.kth.sda3.todolist.controller.ToDoListController;
+import se.kth.sda3.todolist.controller.DataController;
+import se.kth.sda3.todolist.model.Task;
 import se.kth.sda3.todolist.view.ViewHelper;
 import se.kth.sda3.todolist.view.Menu;
 import se.kth.sda3.todolist.view.Screen;
@@ -17,9 +18,9 @@ public class ShowView extends Screen{
 
     private static final int DUE_DATE = 1;
     private static final int PROJECT = 2;
-    private final ToDoListController toDoListCtrl;
+    private final DataController<Task> toDoListCtrl;
 
-    public ShowView(ToDoListController toDoListCtrl) {
+    public ShowView(DataController<Task> toDoListCtrl) {
         super(new Menu(), "       Show tasks by:      ");
         this.toDoListCtrl = toDoListCtrl;
         menu.addOption(DUE_DATE, "Due Date");
@@ -46,7 +47,7 @@ public class ShowView extends Screen{
 
     private void showListByDueDate() {
         System.out.println("DUE DATE\tTASK\tPROJECT\tSTATUS");
-        toDoListCtrl.getTasks().stream()
+        toDoListCtrl.getData().stream()
                 .sorted((a,b) -> a.getDueDate().compareTo(b.getDueDate()))
                 .forEach(t -> System.out.format("%s\t%s\t%s\t%s\n",
                         ViewHelper.parseDateToString(t.getDueDate()),
@@ -55,7 +56,7 @@ public class ShowView extends Screen{
 
     private void showListByProject() {
         System.out.println("PROJECT\tTASK\tDUE DATE\tSTATUS");
-        toDoListCtrl.getTasks().stream()
+        toDoListCtrl.getData().stream()
                 .sorted((a,b) -> a.getProject().compareTo(b.getProject()))
                 .forEach(t -> System.out.format("%s\t%s\t%s\t%s\n",
                         t.getProject(), t.getName(),
