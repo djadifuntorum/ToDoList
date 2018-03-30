@@ -41,7 +41,7 @@ public class AddView extends Screen{
         newTask.setProject(ViewHelper.getInput());
         System.out.print("Enter Due date <ddmmyyyy>: ");
         newTask.setDueDate(ViewHelper.getDateInput());
-        System.out.print("Enter Status: ");
+        System.out.print("Enter Status <new, working, done>: ");
         newTask.setStatus(ViewHelper.getStatusInput());
         System.out.println();
         System.out.println();
