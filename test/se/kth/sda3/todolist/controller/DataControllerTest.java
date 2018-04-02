@@ -16,8 +16,8 @@ import org.junit.Test;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-import se.kth.sda3.todolist.filehandler.Reader;
-import se.kth.sda3.todolist.filehandler.Writer;
+import se.kth.sda3.todolist.filehandler.TaskReader;
+import se.kth.sda3.todolist.filehandler.TaskWriter;
 import se.kth.sda3.todolist.model.Status;
 import se.kth.sda3.todolist.model.Task;
 
@@ -48,7 +48,7 @@ public class DataControllerTest {
     @Test
     public void testLoadFileWithData() {
         List<Task> data = new ArrayList<>();
-        Reader reader = mock(Reader.class);
+        TaskReader reader = mock(TaskReader.class);
 
         data.add(new Task("read", "Java", new Date(), Status.NEW));
         when(reader.readFile()).thenReturn(data);
@@ -61,7 +61,7 @@ public class DataControllerTest {
     @Test
     public void testLoadFileWithoutData() {
         List<Task> data = new ArrayList<>();
-        Reader reader = mock(Reader.class);
+        TaskReader reader = mock(TaskReader.class);
 
         when(reader.readFile()).thenReturn(data);
         instance.loadFile(reader);
@@ -72,7 +72,7 @@ public class DataControllerTest {
 
     @Test
     public void testWriteFileWithData() {
-        Writer writer = mock(Writer.class);
+        TaskWriter writer = mock(TaskWriter.class);
 
         instance.addData(new Task("read", "Java", new Date(), Status.NEW));
         instance.writeFile(writer);
@@ -81,7 +81,7 @@ public class DataControllerTest {
 
     @Test
     public void testWriteFileWithoutData() {
-        Writer writer = mock(Writer.class);
+        TaskWriter writer = mock(TaskWriter.class);
 
         instance.writeFile(writer);
         verify(writer).writeFile(instance.getData());

@@ -6,6 +6,8 @@ package se.kth.sda3.todolist.startup;
 
 import se.kth.sda3.todolist.controller.DataController;
 import se.kth.sda3.todolist.filehandler.Reader;
+import se.kth.sda3.todolist.filehandler.TaskReader;
+import se.kth.sda3.todolist.filehandler.TaskWriter;
 import se.kth.sda3.todolist.filehandler.Writer;
 import se.kth.sda3.todolist.model.Task;
 import se.kth.sda3.todolist.view.ViewManager;
@@ -22,8 +24,8 @@ public class Main {
      * @param args The application does not have command line arguments.
      */
     public static void main(String[] args) {
-        Reader<Task> reader = new Reader("Tasks.csv");
-        Writer<Task> writer = new Writer("Tasks.csv");
+        Reader<Task> reader = new TaskReader("Tasks.csv");
+        Writer<Task> writer = new TaskWriter("Tasks.csv");
         DataController<Task> taskDataCtrl = new DataController<>();
         ViewManager view = new ViewManager(taskDataCtrl);
 
